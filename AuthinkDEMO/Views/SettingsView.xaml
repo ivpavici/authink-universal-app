@@ -1,0 +1,249 @@
+﻿<Page x:Class="AuthinkDEMO.Views.SettingsView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ignore="http://www.ignore.com" 
+                        xmlns:Triggers="using:WinRT.Triggers" 
+                        xmlns:converters="using:AuthinkDEMO.Converters"
+                        mc:Ignorable="d ignore"
+                        d:DesignHeight="768"
+                        d:DesignWidth="1366"
+                        DataContext="{Binding Settings, Source={StaticResource Locator}}">
+
+    <Page.Resources>
+        <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
+        <Style x:Key="SettingsRadioButtonStyle" TargetType="RadioButton">
+    		<Setter Property="Background" Value="Transparent"/>
+    		<Setter Property="Foreground" Value="{StaticResource RadioButtonContentForegroundThemeBrush}"/>
+    		<Setter Property="Padding" Value="1,4,0,0"/>
+    		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+    		<Setter Property="VerticalAlignment" Value="Center"/>
+    		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+    		<Setter Property="VerticalContentAlignment" Value="Top"/>
+    		<Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+    		<Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="RadioButton">
+    					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="Center" VerticalAlignment="Center">
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="CommonStates">
+    								<VisualState x:Name="Normal"/>
+    								<VisualState x:Name="Pressed">
+    									<Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="SettingsRadioButtonImage">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Disabled">
+    									<Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="SettingsRadioButtonImage">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="CheckStates">
+    								<VisualState x:Name="Checked">
+    									<Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SettingsRadioButtonImage"/>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Unchecked"/>
+    								<VisualState x:Name="Indeterminate"/>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="FocusStates">
+    								<VisualState x:Name="Focused">
+    								</VisualState>
+    								<VisualState x:Name="Unfocused"/>
+    								<VisualState x:Name="PointerFocused"/>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+    							<Grid.ColumnDefinitions>
+    								<ColumnDefinition Width="0.5*"/>
+    								<ColumnDefinition Width="0.5*"/>
+    							</Grid.ColumnDefinitions>
+    							<Grid HorizontalAlignment="Left">
+                                    <Border Background="#FFFFB703" CornerRadius="5" Width="50" Height="50" Padding="2">
+                                        <Border x:Name="border" BorderThickness="1" CornerRadius="5">
+                                            <Border.BorderBrush>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="4,4"
+											                        SpreadMethod="Repeat" MappingMode="Absolute">
+                                                    <GradientStop Color="Transparent" Offset="0" />
+                                                    <GradientStop Color="Transparent" Offset="0.47" />
+                                                    <GradientStop Color="White" Offset="0.5" />
+                                                </LinearGradientBrush>
+                                            </Border.BorderBrush>
+                                        	<Image x:Name="SettingsRadioButtonImage" Source="ms-appx:///Resources/Nagradni ekran/checkmark.png" Opacity="0" Margin="-10"/>
+                                        </Border>
+                                    </Border>   								
+    							</Grid>
+    							<ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0" Width="75" Height="30"/>
+    						</Grid>
+    					</Border>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style> 		
+    </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Logo/authink-background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Rectangle 
+            Fill="#7F000000"/>
+        <Viewbox Stretch="Uniform">
+        <Grid x:Name="SettingsContainer" 
+                  Height="{Binding ActualWidth, ElementName=SettingsContainer, Converter={StaticResource MultiplyByScreenRatio}}" 
+                  Width="1366">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+                Grid.Row="0"
+        		Text="{Binding SettingsText, Mode=TwoWay}"  
+        		HorizontalAlignment="Center" 
+        		FontSize="40" 
+        		Foreground="White" 
+        		FontFamily="/Fonts/ObelixPro.ttf#ObelixPro" 
+                VerticalAlignment="Center"/>
+            <Grid  Grid.Row="1" >
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="0.3*"/>
+            		<RowDefinition Height="0.3*"/>
+            		<RowDefinition Height="0.3*"/>
+            	</Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.33*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock            			
+            			Grid.Column="0" 
+            			Text="{Binding ChooseLangText, Mode=TwoWay}" 
+            			FontSize="33.333"
+            			FontFamily="/Fonts/ObelixPro.ttf#ObelixPro" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            		<RadioButton 
+            			Grid.Column="1"
+            			x:Name="ChooseCroatianButton" 
+            			Content="{Binding CroatianLanguage, Mode=TwoWay}"
+            			Loaded="ChooselanguageButton_Loaded"
+            		    HorizontalAlignment="Right" 
+            			Style="{StaticResource SettingsRadioButtonStyle}">
+            			<Triggers:Interactions.Triggers>
+            				<Triggers:EventTrigger EventName="Checked">
+            					<Triggers:InvokeCommandAction CommandParameter="Hr" Command="{Binding ChangeLanguage}"/>
+            				</Triggers:EventTrigger>
+            			</Triggers:Interactions.Triggers>
+            		</RadioButton>
+            		<RadioButton 
+            			Grid.Column="2"
+            			x:Name="ChooseEnglishButton"
+            			Content="{Binding EnglishLanguage, Mode=TwoWay}" 
+            			Loaded="ChooselanguageButton_Loaded" 
+            			HorizontalAlignment="Left"
+            			Style="{StaticResource SettingsRadioButtonStyle}" Margin="20,0,0,0">
+            			<Triggers:Interactions.Triggers>
+            				<Triggers:EventTrigger EventName="Checked">
+            					<Triggers:InvokeCommandAction CommandParameter="En" Command="{Binding ChangeLanguage}"/>
+            				</Triggers:EventTrigger>
+            			</Triggers:Interactions.Triggers>
+            		</RadioButton>
+            	</Grid>
+            	<Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.33*"/>
+                    </Grid.ColumnDefinitions>
+            		<TextBlock
+            			Grid.Column="0" 
+            			Text="{Binding RewardSoundText, Mode=TwoWay}" 
+            			FontSize="33.333"
+            			FontFamily="/Fonts/ObelixPro.ttf#ObelixPro" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            		<RadioButton
+                        Grid.Column="1"
+            			x:Name="EnableRewardSound"
+            			Content="{Binding RewardSoundButtonContent_on, Mode=TwoWay}"
+            			Loaded="RadioButton_Loaded"
+            			HorizontalAlignment="Right"
+                        Style="{StaticResource SettingsRadioButtonStyle}" FontFamily="Fonts/ObelixPro.ttf#ObelixPro">
+            			<Triggers:Interactions.Triggers>
+            				<Triggers:EventTrigger EventName="Checked">
+            					<Triggers:InvokeCommandAction CommandParameter="true" Command="{Binding ToggleRewardSoundEnableCommand}"/>
+            				</Triggers:EventTrigger>
+            			</Triggers:Interactions.Triggers>
+            		</RadioButton>
+            		<RadioButton
+                        Grid.Column="2"
+            			x:Name="DisableRewardSound"
+            			Content="{Binding RewardSoundButtonContent_off, Mode=TwoWay}"
+            			Loaded="RadioButton_Loaded"
+            			HorizontalAlignment="Left"
+                        Style="{StaticResource SettingsRadioButtonStyle}" FontFamily="Fonts/ObelixPro.ttf#ObelixPro" Margin="20,0,0,0">
+            			<Triggers:Interactions.Triggers>
+            				<Triggers:EventTrigger EventName="Checked">
+            					<Triggers:InvokeCommandAction CommandParameter="false" Command="{Binding ToggleRewardSoundEnableCommand}"/>
+            				</Triggers:EventTrigger>
+            			</Triggers:Interactions.Triggers>
+            		</RadioButton>
+            	</Grid>
+            	<Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.33*"/>
+                    </Grid.ColumnDefinitions>
+            		<TextBlock
+            			Grid.Column="0" 
+            			Text="{Binding InstructionsSoundText, Mode=TwoWay}" 
+            			FontSize="33.333"
+            			FontFamily="/Fonts/ObelixPro.ttf#ObelixPro" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            		<RadioButton
+                        Grid.Column="1"
+            			x:Name="EnableSound_instructions"
+            			Content="{Binding InstructionsSoundButtonContent_on, Mode=TwoWay}"
+            			Loaded="RadioButton_Loaded"
+            			VerticalAlignment="Center" HorizontalAlignment="Right" 
+                         Style="{StaticResource SettingsRadioButtonStyle}" FontFamily="Fonts/ObelixPro.ttf#ObelixPro">
+            			<Triggers:Interactions.Triggers>
+            				<Triggers:EventTrigger EventName="Checked">
+            					<Triggers:InvokeCommandAction CommandParameter="true" Command="{Binding ToggleInstructionSoundEnableCommand}"/>
+            				</Triggers:EventTrigger>
+            			</Triggers:Interactions.Triggers>
+            		</RadioButton>
+            		<RadioButton
+                        Grid.Column="2"
+            			x:Name="DisableSound_instructions"
+            			Content="{Binding InstructionsSoundButtonContent_off, Mode=TwoWay}"
+            			Loaded="RadioButton_Loaded"
+            			VerticalAlignment="Center" HorizontalAlignment="Left" 
+                         Style="{StaticResource SettingsRadioButtonStyle}" FontFamily="Fonts/ObelixPro.ttf#ObelixPro" Margin="20,0,0,0">
+            			<Triggers:Interactions.Triggers>
+            				<Triggers:EventTrigger EventName="Checked">
+            					<Triggers:InvokeCommandAction CommandParameter="false" Command="{Binding ToggleInstructionSoundEnableCommand}"/>
+            				</Triggers:EventTrigger>
+            			</Triggers:Interactions.Triggers>
+            		</RadioButton>
+            	</Grid>
+            </Grid>
+            <StackPanel Orientation="Vertical" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="150">
+            	<Button 
+            		Content="{Binding BackButtonContent, Mode=TwoWay}"
+            		HorizontalAlignment="Stretch" 
+            		VerticalAlignment="Center"
+            		Command="{Binding BackCommand}"
+            		Template="{StaticResource GlobalYellowButtonStyle}" 
+            		FontFamily="Fonts/ObelixPro.ttf#ObelixPro" MinWidth="250" MinHeight="41"
+                    FontSize="22"/>
+            </StackPanel>      
+        </Grid>
+        </Viewbox>
+    </Grid>
+</Page>
