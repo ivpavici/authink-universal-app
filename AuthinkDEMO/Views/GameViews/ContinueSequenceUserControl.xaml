@@ -2,65 +2,63 @@
     x:Class="AuthinkDEMO.Views.GameViews.ContinueSequenceUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Triggers="using:WinRT.Triggers"
+    xmlns:converters="using:AuthinkDEMO.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Triggers="using:WinRT.Triggers" 
-    xmlns:converters="using:AuthinkDEMO.Converters" mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext="{Binding ContinueSequence,Source={StaticResource Locator}}">
+    DataContext="{Binding ContinueSequence, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
         <DataTemplate x:Key="ItemTemplateWithRewardPictures">
-            <StackPanel 
-                x:Name="panel" 
-                Orientation="Horizontal">
-                <Image 
+            <StackPanel x:Name="panel" Orientation="Horizontal">
+                <Image
+                    Width="100"
+                    Height="100"
                     Source="{Binding Url}"
-                    Stretch="Fill" 
-                    Width="100" 
-                    Height="100"/>
-            </StackPanel>                    
-        </DataTemplate>        
-        <DataTemplate x:Key="ItemTemplate">            
-            <Image 
-                Source="{Binding Url}"  
-                Stretch="Fill" 
-                Width="100" 
-                Height="100"/>                
+                    Stretch="Fill" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ItemTemplate">
+            <Image
+                Width="100"
+                Height="100"
+                Source="{Binding Url}"
+                Stretch="Fill" />
         </DataTemplate>
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
-        <Grid x:Name="CountinueSequnenceContainer" 
-                  Height="{Binding ActualWidth, ElementName=CountinueSequnenceContainer, Converter={StaticResource MultiplyByScreenRatio}}" 
-                  Width="1366"
-        Background="White">
-            <Grid 
-            VerticalAlignment="Center" 
-            HorizontalAlignment="Center">
+        <Grid
+            x:Name="CountinueSequnenceContainer"
+            Width="1366"
+            Height="{Binding ActualWidth, ElementName=CountinueSequnenceContainer, Converter={StaticResource MultiplyByScreenRatio}}"
+            Background="White">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Grid 
-                VerticalAlignment="Center" 
-                HorizontalAlignment="Center" 
-                Margin="20, 0, 0, 0" 
-                Grid.Column="0" >
-                    <ListView 
-                    ItemTemplate="{StaticResource ItemTemplate}"
-        	        ItemsSource="{Binding Pictures_Sequence}"
-                    ItemContainerStyle="{StaticResource PictureListViewItemStyle}"
-                    IsItemClickEnabled="False" 
-        	        SelectionMode="None"
-        	        IsSwipeEnabled="False"
-                    ScrollViewer.HorizontalScrollMode="Disabled" 
-                    ScrollViewer.VerticalScrollMode="Disabled"
-        	        ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center"
-                    IsHitTestVisible="False">
+                <Grid
+                    Grid.Column="0"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <ListView
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsHitTestVisible="False"
+                        IsItemClickEnabled="False"
+                        IsSwipeEnabled="False"
+                        ItemContainerStyle="{StaticResource PictureListViewItemStyle}"
+                        ItemTemplate="{StaticResource ItemTemplate}"
+                        ItemsSource="{Binding Pictures_Sequence}"
+                        ScrollViewer.HorizontalScrollMode="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollMode="Disabled"
+                        SelectionMode="None">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />
@@ -68,25 +66,29 @@
                         </ListView.ItemsPanel>
                     </ListView>
                 </Grid>
-                <Grid 
-                VerticalAlignment="Center" 
-                HorizontalAlignment="Center" 
-                Margin="20,0,0,0" 
-                Grid.Column="1">
+                <Grid
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
-                    <MediaElement Source="{Binding SoundUrl}" AutoPlay="True" AudioCategory="BackgroundCapableMedia" Visibility="Collapsed"/>
-                    <ListView 
-                        ItemTemplate="{StaticResource ItemTemplateWithRewardPictures}"
-        	            ItemsSource="{Binding Pictures_OfferedAnswers}"
-                        ItemContainerStyle="{StaticResource PictureListViewItemStyle}"
-        	            IsItemClickEnabled="True" 
-        	            SelectionMode="None"
-        	            IsSwipeEnabled="False"
-                        ScrollViewer.HorizontalScrollMode="Disabled" 
-                        ScrollViewer.VerticalScrollMode="Disabled"
-        	            ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                    <MediaElement
+                        AudioCategory="BackgroundCapableMedia"
+                        AutoPlay="True"
+                        Source="{Binding SoundUrl}"
+                        Visibility="Collapsed" />
+                    <ListView
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        IsItemClickEnabled="True"
+                        IsSwipeEnabled="False"
+                        ItemContainerStyle="{StaticResource PictureListViewItemStyle}"
+                        ItemTemplate="{StaticResource ItemTemplateWithRewardPictures}"
+                        ItemsSource="{Binding Pictures_OfferedAnswers}"
+                        ScrollViewer.HorizontalScrollMode="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollMode="Disabled"
+                        SelectionMode="None">
                         <Triggers:Interactions.Triggers>
                             <Triggers:EventTrigger EventName="ItemClick">
                                 <Triggers:InvokeCommandAction Command="{Binding ItemClickCommand}" PassEventArgsToCommand="True" />

@@ -2,141 +2,195 @@
     x:Class="AuthinkDEMO.Views.GameViews.DetectDifferentItems_HighDifficulty_UserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Triggers="using:WinRT.Triggers"
+    xmlns:converters="using:AuthinkDEMO.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Triggers="using:WinRT.Triggers" xmlns:converters="using:AuthinkDEMO.Converters" mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext ="{Binding DetectDifferentItems_HighDifficulty, Source={StaticResource Locator}}">
+    DataContext="{Binding DetectDifferentItems_HighDifficulty, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
-    <Grid x:Name="DetectDifferentItems_HighDifficultyContainer" 
-                  Height="{Binding ActualWidth, ElementName=DetectDifferentItems_HighDifficultyContainer, Converter={StaticResource MultiplyByScreenRatio}}" 
-                  Width="1366">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.2*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-            <ColumnDefinition Width="0.2*" />
-        </Grid.ColumnDefinitions>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="1" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" 
-            >
-        	<Image Source="{Binding Pictures[0].Url}"
-        		HorizontalAlignment="Center" 
-        		VerticalAlignment="Center"
-        		Tag="{Binding Pictures[0].Id}">
-        		<Triggers:Interactions.Triggers>
-        			<Triggers:EventTrigger EventName="PointerPressed">
-        				<Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-        			</Triggers:EventTrigger>
-        		</Triggers:Interactions.Triggers>
-        	</Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="3" 
-            Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Center" 
-            >
-            <Image Source="{Binding Pictures[1].Url}" Tag="{Binding Pictures[1].Id}"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="5" HorizontalAlignment="Center" Margin="0,25,15,0" VerticalAlignment="Center" 
-            >
-            <Image Source="{Binding Pictures[2].Url}" Tag="{Binding Pictures[2].Id}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Row="2" HorizontalAlignment="Center" Margin="10,5,0,0" VerticalAlignment="Center"
-            >
-            <Image Source="{Binding Pictures[3].Url}" Tag="{Binding Pictures[3].Id}"  HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="2" 
-            Grid.Row="2" HorizontalAlignment="Center" Margin="15,20,0,0" VerticalAlignment="Center" MaxWidth="150" MaxHeight="150"
-            >
-            <Image Source="{Binding Pictures[4].Url}" Tag="{Binding Pictures[4].Id}" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="5" 
-            Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"
-            >
-            <Image Source="{Binding Pictures[6].Url}" Tag="{Binding Pictures[6].Id}"  HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="7" 
-            Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,20"
-            >
-            <Image Source="{Binding Pictures[5].Url}" Tag="{Binding Pictures[5].Id}" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <Button 
-            Style="{StaticResource PictureButtonStyle}"  
-            Grid.Column="2"
-            Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,20,0"
-            >
-            <Image Source="{Binding Pictures[7].Url}" Tag="{Binding Pictures[7].Id}"  HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Triggers:Interactions.Triggers>
-                    <Triggers:EventTrigger EventName="PointerPressed">
-                        <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True"/>
-                    </Triggers:EventTrigger>
-                </Triggers:Interactions.Triggers>
-            </Image>
-        </Button>
-        <MediaElement Source="{Binding SoundUrl}" AutoPlay="True" AudioCategory="BackgroundCapableMedia" Visibility="Collapsed"/>
-    </Grid>
+        <Grid
+            x:Name="DetectDifferentItems_HighDifficultyContainer"
+            Width="1366"
+            Height="{Binding ActualWidth, ElementName=DetectDifferentItems_HighDifficultyContainer, Converter={StaticResource MultiplyByScreenRatio}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="1"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[0].Url}"
+                    Tag="{Binding Pictures[0].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[1].Url}"
+                    Tag="{Binding Pictures[1].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Column="5"
+                Margin="0,25,15,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[2].Url}"
+                    Tag="{Binding Pictures[2].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Row="2"
+                Margin="10,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[3].Url}"
+                    Tag="{Binding Pictures[3].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                MaxWidth="150"
+                MaxHeight="150"
+                Margin="15,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[4].Url}"
+                    Tag="{Binding Pictures[4].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Row="3"
+                Grid.Column="5"
+                Margin="20,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[6].Url}"
+                    Tag="{Binding Pictures[6].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="7"
+                Margin="0,0,10,20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[5].Url}"
+                    Tag="{Binding Pictures[5].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <Button
+                Grid.Row="4"
+                Grid.Column="2"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Style="{StaticResource PictureButtonStyle}">
+                <Image
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Pictures[7].Url}"
+                    Tag="{Binding Pictures[7].Id}">
+                    <Triggers:Interactions.Triggers>
+                        <Triggers:EventTrigger EventName="PointerPressed">
+                            <Triggers:InvokeCommandAction Command="{Binding PointerPressedCommand}" PassEventArgsToCommand="True" />
+                        </Triggers:EventTrigger>
+                    </Triggers:Interactions.Triggers>
+                </Image>
+            </Button>
+            <MediaElement
+                AudioCategory="BackgroundCapableMedia"
+                AutoPlay="True"
+                Source="{Binding SoundUrl}"
+                Visibility="Collapsed" />
+        </Grid>
     </Viewbox>
 </UserControl>

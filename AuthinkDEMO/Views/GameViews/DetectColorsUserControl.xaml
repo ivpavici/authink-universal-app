@@ -2,57 +2,84 @@
     x:Class="AuthinkDEMO.Views.GameViews.DetectColorsUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:AuthinkDEMO.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converters="using:AuthinkDEMO.Converters" mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext ="{Binding DetectColors, Source={StaticResource Locator}}">
+    DataContext="{Binding DetectColors, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
         <Style x:Key="EllipseButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}"/>
-            <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}"/>
-            <Setter Property="Padding" Value="12,4,12,4"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}" />
+            <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}" />
+            <Setter Property="Padding" Value="12,4,12,4" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
+                            <Ellipse
+                                x:Name="ellipse"
+                                Fill="{TemplateBinding Background}"
+                                RenderTransformOrigin="0.5,0.5"
+                                Stroke="{TemplateBinding BorderBrush}"
+                                StrokeEndLineCap="Square"
+                                StrokeThickness="{TemplateBinding BorderThickness}">
+                                <Ellipse.RenderTransform>
+                                    <CompositeTransform />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                        <VisualTransition GeneratedDuration="0:0:0.1" />
                                     </VisualStateGroup.Transitions>
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="PointerOver"/>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
-                                            <DoubleAnimation Duration="0" To="0.95" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
-                                            <DoubleAnimation Duration="0" To="0.95" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
-                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
-                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
+                                            <DoubleAnimation
+                                                d:IsOptimized="True"
+                                                Storyboard.TargetName="ellipse"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                                                To="0.95"
+                                                Duration="0" />
+                                            <DoubleAnimation
+                                                d:IsOptimized="True"
+                                                Storyboard.TargetName="ellipse"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                To="0.95"
+                                                Duration="0" />
+                                            <DoubleAnimation
+                                                d:IsOptimized="True"
+                                                Storyboard.TargetName="ellipse"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+                                                To="0"
+                                                Duration="0" />
+                                            <DoubleAnimation
+                                                d:IsOptimized="True"
+                                                Storyboard.TargetName="ellipse"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                To="0"
+                                                Duration="0" />
                                         </Storyboard>
                                     </VisualState>
-                                    <VisualState x:Name="Disabled"/>
+                                    <VisualState x:Name="Disabled" />
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="FocusStates">
-                                    <VisualState x:Name="Focused"/>
-                                    <VisualState x:Name="Unfocused"/>
-                                    <VisualState x:Name="PointerFocused"/>
+                                    <VisualState x:Name="Focused" />
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Ellipse x:Name="ellipse" StrokeEndLineCap="Square" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Fill="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
-                                <Ellipse.RenderTransform>
-                                    <CompositeTransform/>
-                                </Ellipse.RenderTransform>
-                            </Ellipse>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -60,17 +87,17 @@
         </Style>
         <DataTemplate x:Key="SlikaDviElipseTemplate">
             <Border
-                BorderBrush="#19000000" 
-                BorderThickness="4" 
-                Padding="10"
-                Margin="20"
+                Width="300"
                 Height="300"
-                Width="300" >
+                Margin="20"
+                Padding="10"
+                BorderBrush="#19000000"
+                BorderThickness="4">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.33*"/>
-                        <RowDefinition Height="0.33*"/>
-                        <RowDefinition Height="0.33*"/>
+                        <RowDefinition Height="0.33*" />
+                        <RowDefinition Height="0.33*" />
+                        <RowDefinition Height="0.33*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.33*" />
@@ -78,115 +105,115 @@
                         <ColumnDefinition Width="0.33*" />
                     </Grid.ColumnDefinitions>
                     <Border
-                            Grid.Column="1"
-                            Grid.Row="1"                             
-                            Margin="-10" >
-                        <Image     
-                            Source="{Binding Url}"
-                            Stretch="Uniform" />
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="-10">
+                        <Image Source="{Binding Url}" Stretch="Uniform" />
                     </Border>
                     <Button
-                            Width="55"
-                            Height="55"
-                            Background="{Binding Colors[0].Value}" 
-                            Tag="{Binding Colors[0].IsCorrect}"
-                            Grid.Column="2" 
-                            Grid.Row="2" 
-                            VerticalAlignment="Center"
-                            Command="{Binding EllipseButtonClickCommand}"
-                            Style="{StaticResource EllipseButtonStyle}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" 
-                            HorizontalAlignment="Center">
-                    </Button>
-                    <Button
-                            Width="55"
-                            Height="55"
-                            Background="{Binding Colors[1].Value}" 
-                            Tag="{Binding Colors[1].IsCorrect}"
-                            Grid.Column="2" 
-                            Grid.Row="0"
-                            Command="{Binding EllipseButtonClickCommand}"
-                            VerticalAlignment="Center" 
-                            Style="{StaticResource EllipseButtonStyle}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                            HorizontalAlignment="Center"/>
-                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
                         Width="55"
                         Height="55"
-                        Background="{Binding Colors[2].Value}" 
-                        Tag="{Binding Colors[2].IsCorrect}"
-                        Grid.Column="0" 
-                        Grid.Row="2" 
-                        Command="{Binding EllipseButtonClickCommand}"
-                        VerticalAlignment="Center" 
-                        Style="{StaticResource EllipseButtonStyle}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                        HorizontalAlignment="Center"/>
-                    <Button
-                        Width="55"
-                        Height="55"
-                        Background="{Binding Colors[3].Value}" 
-                        Tag="{Binding Colors[3].IsCorrect}"
-                        Grid.Column="0" 
-                        Grid.Row="0" 
-                        Command="{Binding EllipseButtonClickCommand}"
-                        VerticalAlignment="Center" 
-                        Style="{StaticResource EllipseButtonStyle}" 
-                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                        HorizontalAlignment="Center"/>
-                    <Button
-                        Width="55"
-                        Height="55"
-                        Background="{Binding Colors[4].Value}" 
-                        Tag="{Binding Colors[4].IsCorrect}"
-                        Grid.Column="0" 
-                        Grid.Row="1" 
-                        Command="{Binding EllipseButtonClickCommand}"
-                        VerticalAlignment="Center" 
-                        Style="{StaticResource EllipseButtonStyle}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                        HorizontalAlignment="Center"/>
-                    <Button
-                        Width="55"
-                        Height="55"
-                        Background="{Binding Colors[5].Value}" 
-                        Tag="{Binding Colors[5].IsCorrect}"
-                        Grid.Column="2" 
-                        Grid.Row="1" 
-                        Command="{Binding EllipseButtonClickCommand}"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Style="{StaticResource EllipseButtonStyle}"
+                        Background="{Binding Colors[0].Value}"
+                        Command="{Binding EllipseButtonClickCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                        HorizontalAlignment="Center"/>
-                    <Image 
-                        Source="" 
-                        Tag="Checkmark" 
-                        VerticalAlignment="Bottom"  
-                        HorizontalAlignment="Center" 
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Tag="{Binding Colors[0].IsCorrect}" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Width="55"
+                        Height="55"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{Binding Colors[1].Value}"
+                        Command="{Binding EllipseButtonClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Tag="{Binding Colors[1].IsCorrect}" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Width="55"
+                        Height="55"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{Binding Colors[2].Value}"
+                        Command="{Binding EllipseButtonClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Tag="{Binding Colors[2].IsCorrect}" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Width="55"
+                        Height="55"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{Binding Colors[3].Value}"
+                        Command="{Binding EllipseButtonClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Tag="{Binding Colors[3].IsCorrect}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Width="55"
+                        Height="55"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{Binding Colors[4].Value}"
+                        Command="{Binding EllipseButtonClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Tag="{Binding Colors[4].IsCorrect}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="55"
+                        Height="55"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{Binding Colors[5].Value}"
+                        Command="{Binding EllipseButtonClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Tag="{Binding Colors[5].IsCorrect}" />
+                    <Image
+                        Grid.Row="2"
+                        Grid.Column="1"
                         Width="75"
-                        Height="75" 
-                        Grid.Row="2" 
-                        Grid.Column="1"/>
+                        Height="75"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Source=""
+                        Tag="Checkmark" />
                 </Grid>
             </Border>
         </DataTemplate>
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
-        <Grid x:Name="DetectColorsContainer" 
-                  Height="{Binding ActualWidth, ElementName=DetectColorsContainer, Converter={StaticResource MultiplyByScreenRatio}}" 
-                  Width="1366">
-            <MediaElement Source="{Binding SoundUrl}" AutoPlay="True" AudioCategory="BackgroundCapableMedia" Visibility="Collapsed"/>
+        <Grid
+            x:Name="DetectColorsContainer"
+            Width="1366"
+            Height="{Binding ActualWidth, ElementName=DetectColorsContainer, Converter={StaticResource MultiplyByScreenRatio}}">
+            <MediaElement
+                AudioCategory="BackgroundCapableMedia"
+                AutoPlay="True"
+                Source="{Binding SoundUrl}"
+                Visibility="Collapsed" />
             <ItemsControl
-            ItemTemplate="{StaticResource SlikaDviElipseTemplate}"
-            ItemsSource="{Binding PicturesWithColors}"
-            Margin="30"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center">
+                Margin="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource SlikaDviElipseTemplate}"
+                ItemsSource="{Binding PicturesWithColors}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <VariableSizedWrapGrid 
-                        MaximumRowsOrColumns="3" 
-                        Orientation="Horizontal" />
+                        <VariableSizedWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

@@ -1,53 +1,62 @@
-﻿<Page x:Class="AuthinkDEMO.Views.RewardView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:ignore="http://www.ignore.com" xmlns:converters="using:AuthinkDEMO.Converters" mc:Ignorable="d ignore"
-      d:DesignHeight="768"
-      d:DesignWidth="1366"
-      DataContext="{Binding Reward, Source={StaticResource Locator}}">
+﻿<Page
+    x:Class="AuthinkDEMO.Views.RewardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:AuthinkDEMO.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ignore="http://www.ignore.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="768"
+    d:DesignWidth="1366"
+    DataContext="{Binding Reward, Source={StaticResource Locator}}"
+    mc:Ignorable="d ignore">
     <Page.Resources>
         <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
     </Page.Resources>
-        <Grid>
+    <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Resources/Nagradni ekran/nagradni ekran.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="ms-appx:///Resources/Nagradni ekran/nagradni ekran.png" Stretch="UniformToFill" />
         </Grid.Background>
-        <MediaElement x:Name="mediaPlayer" AudioCategory="BackgroundCapableMedia"  AutoPlay="True" Source="{Binding SoundUrl}"/>
+        <MediaElement
+            x:Name="mediaPlayer"
+            AudioCategory="BackgroundCapableMedia"
+            AutoPlay="True"
+            Source="{Binding SoundUrl}" />
         <Viewbox Stretch="Uniform">
-            <Grid x:Name="RewardContainer" 
-                  Height="{Binding ActualWidth, ElementName=RewardContainer, Converter={StaticResource MultiplyByScreenRatio}}" 
-                  Width="1366">
+            <Grid
+                x:Name="RewardContainer"
+                Width="1366"
+                Height="{Binding ActualWidth, ElementName=RewardContainer, Converter={StaticResource MultiplyByScreenRatio}}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <StackPanel 
-                    Orientation="Vertical" 
-                    Grid.Row="1" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center">
-                    <TextBlock 
-                        FontSize="36" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        FontFamily="/Fonts/ObelixPro.ttf#ObelixPro" 
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock
                         Margin="40"
-                        Text="{Binding RewardTextContent}">
-                    </TextBlock>
-                        <StackPanel 
-                            Orientation="Horizontal" 
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Bottom">
-                            <Button x:Name="continueFurtherButton" 
-                                Content="{Binding ContinueButtonContent}" 
-                                Margin="20"
-    				            HorizontalAlignment="Center" 
-                                Command="{Binding TempRewordCommand}"
-    				            Style="{StaticResource BasicTaskViewButtonStyle}" 
-                                Template="{StaticResource GlobalYellowButtonStyle}" />
-                        </StackPanel>
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Obelix}"
+                        FontSize="36"
+                        Foreground="White"
+                        Text="{Binding RewardTextContent}" />
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="continueFurtherButton"
+                            Margin="20"
+                            HorizontalAlignment="Center"
+                            Command="{Binding TempRewordCommand}"
+                            Content="{Binding ContinueButtonContent}"
+                            Style="{StaticResource BasicTaskViewButtonStyle}"
+                            Template="{StaticResource GlobalYellowButtonStyle}" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Viewbox>

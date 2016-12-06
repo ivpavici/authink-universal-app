@@ -12,6 +12,7 @@ using ent = AuthinkDEMO.Model.Entities;
 using AuthinkDEMO.Model.Queries;
 using AuthinkDEMO.Services;
 using System.Collections.Generic;
+using static AuthinkDEMO.Model.Entities.Picture;
 
 namespace AuthinkDEMO.ViewModel.GameViewModels
 {
@@ -31,9 +32,10 @@ namespace AuthinkDEMO.ViewModel.GameViewModels
         }
         private void Init()
         {
-            var pictures = pictureQueries.GetAllPicturesForTask(GameState.GetTask())
-                                         .Select(picture => (ent::Picture.PairHalfPicture)picture)
-                                         .ToList();
+            var task = GameState.GetTask();
+
+            var pictures = pictureQueries.GetAllPicturesForTask(GameState.GetTask());
+            var taskPictures = pictures.Select(picture => new PairHalfPicture(picture.Id, picture.Url, "1", true) { }).ToList();
 
             SoundUrl = SoundServices.GetInstructionsSoundUrl
             (
@@ -42,7 +44,7 @@ namespace AuthinkDEMO.ViewModel.GameViewModels
 
             TransformPicturesDataToModelData
             (
-                picturesData: pictures
+                picturesData: taskPictures
             );
             PictureCount = pictures.Count();
         }

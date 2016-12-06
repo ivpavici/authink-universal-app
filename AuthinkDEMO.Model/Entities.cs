@@ -71,7 +71,8 @@ namespace AuthinkDEMO.Model.Entities
     {
         public int Id { get; set; }
         public string Url { get; set; }
-        public class BasicDetails: Picture
+
+        public class BasicDetails : Picture
         {
             public BasicDetails
             (
