@@ -24,10 +24,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
-        <Grid
-            x:Name="DetectDifferentItemsContainer"
-            Width="1366"
-            Height="{Binding ActualWidth, ElementName=DetectDifferentItemsContainer, Converter={StaticResource MultiplyByScreenRatio}}">
+        <Grid x:Name="DetectDifferentItemsContainer" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.20*" />
                 <RowDefinition Height="0.20*" />

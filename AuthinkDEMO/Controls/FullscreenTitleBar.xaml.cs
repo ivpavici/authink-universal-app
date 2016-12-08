@@ -9,6 +9,7 @@ namespace AuthinkDEMO.Controls
     public sealed partial class FullscreenTitleBar : UserControl
     {
         double d = 0.0;
+
         public FullscreenTitleBar()
         {
             this.InitializeComponent();
@@ -41,9 +42,9 @@ namespace AuthinkDEMO.Controls
 
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
-            GrapPanel.Height = sender.Height;
+            GrabPanel.Height = sender.Height;
             FullScreenButton.Margin = new Thickness(0, 0, sender.SystemOverlayRightInset, 0);
-            Window.Current.SetTitleBar(GrapPanel);
+            Window.Current.SetTitleBar(GrabPanel);
         }
     }
 }

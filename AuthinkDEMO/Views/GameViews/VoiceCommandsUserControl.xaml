@@ -151,64 +151,67 @@
                 Stretch="Uniform" />
         </DataTemplate>
     </UserControl.Resources>
-    <Viewbox Stretch="Uniform">
-        <Grid
-            x:Name="VoiceCommandsContainer"
-            Width="1366"
-            Height="{Binding ActualWidth, ElementName=VoiceCommandsContainer, Converter={StaticResource MultiplyByScreenRatio}}">
-            <Button
-                x:Name="RefreshSoundButton"
-                Width="100"
-                Height="100"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Command="{Binding ReplayVoiceInstructionCommand}"
-                CommandParameter="{Binding ElementName=GROB}"
-                IsEnabled="{Binding IsSoundOn, Converter={StaticResource EnableButtonConverterKey}}"
-                Opacity="0.3"
-                Style="{StaticResource SettingsMenuButtonStyle}">
-                <Image Source="ms-appx:///Resources/refresh.png" />
-            </Button>
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid
-                    Grid.Column="0"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-                    <MediaElement
-                        x:Name="GROB"
-                        AudioCategory="BackgroundCapableMedia"
-                        AutoPlay="True"
-                        Source="{Binding SoundUrl}"
-                        Visibility="Collapsed" />
-                    <ListView
+    <Grid>
+        <Button
+            x:Name="RefreshSoundButton"
+            Width="100"
+            Height="100"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding ReplayVoiceInstructionCommand}"
+            CommandParameter="{Binding ElementName=GROB}"
+            IsEnabled="{Binding IsSoundOn, Converter={StaticResource EnableButtonConverterKey}}"
+            Opacity="0.3"
+            Style="{StaticResource SettingsMenuButtonStyle}">
+            <Image Source="ms-appx:///Resources/refresh.png" />
+        </Button>
+
+        <Viewbox Stretch="Uniform">
+            <Grid
+                x:Name="VoiceCommandsContainer"
+                Width="1366"
+                Height="{Binding ActualWidth, ElementName=VoiceCommandsContainer, Converter={StaticResource MultiplyByScreenRatio}}">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid
+                        Grid.Column="0"
+                        Margin="20,0,0,0"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        IsItemClickEnabled="True"
-                        IsSwipeEnabled="False"
-                        ItemContainerStyle="{StaticResource PictureListViewItemStyle}"
-                        ItemTemplate="{StaticResource ItemTemplate}"
-                        ItemsSource="{Binding Pictures}"
-                        ScrollViewer.HorizontalScrollMode="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                        ScrollViewer.VerticalScrollMode="Disabled"
-                        SelectionMode="None">
-                        <Triggers:Interactions.Triggers>
-                            <Triggers:EventTrigger EventName="ItemClick">
-                                <Triggers:InvokeCommandAction Command="{Binding ItemClickCommand}" PassEventArgsToCommand="True" />
-                            </Triggers:EventTrigger>
-                        </Triggers:Interactions.Triggers>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
+                        VerticalAlignment="Center">
+                        <MediaElement
+                            x:Name="GROB"
+                            AudioCategory="BackgroundCapableMedia"
+                            AutoPlay="True"
+                            Source="{Binding SoundUrl}"
+                            Visibility="Collapsed" />
+                        <ListView
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            IsItemClickEnabled="True"
+                            IsSwipeEnabled="False"
+                            ItemContainerStyle="{StaticResource PictureListViewItemStyle}"
+                            ItemTemplate="{StaticResource ItemTemplate}"
+                            ItemsSource="{Binding Pictures}"
+                            ScrollViewer.HorizontalScrollMode="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                            ScrollViewer.VerticalScrollMode="Disabled"
+                            SelectionMode="None">
+                            <Triggers:Interactions.Triggers>
+                                <Triggers:EventTrigger EventName="ItemClick">
+                                    <Triggers:InvokeCommandAction Command="{Binding ItemClickCommand}" PassEventArgsToCommand="True" />
+                                </Triggers:EventTrigger>
+                            </Triggers:Interactions.Triggers>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
-    </Viewbox>
+        </Viewbox>
+    </Grid>
 </UserControl>

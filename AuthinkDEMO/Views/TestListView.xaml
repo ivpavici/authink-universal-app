@@ -303,33 +303,36 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollMode="Auto"
                     SelectedItem="{Binding SelectedTest, Mode=TwoWay}"
+                    SelectionMode="Single"
                     Style="{StaticResource ListViewStyle1}" />
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="0.7*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <StackPanel Margin="20,60,20,20">
-                    <TextBlock
-                        x:Name="testTitle"
-                        HorizontalAlignment="Left"
-                        FontSize="45"
-                        Foreground="Black"
-                        Text="{Binding SelectedTest.Name}"
-                        TextWrapping="Wrap" />
-                    <TextBlock
-                        x:Name="testDescription"
-                        HorizontalAlignment="Left"
-                        FontSize="30"
-                        Foreground="Black"
-                        Text="{Binding SelectedTest.Description}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
+                <TextBlock
+                    x:Name="testTitle"
+                    Margin="20,30,20,20"
+                    HorizontalAlignment="Left"
+                    FontSize="45"
+                    Foreground="Black"
+                    Text="{Binding SelectedTest.Name}"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="testDescription"
+                    Grid.Row="1"
+                    Margin="20,0,20,20"
+                    HorizontalAlignment="Left"
+                    FontSize="30"
+                    Foreground="Black"
+                    Text="{Binding SelectedTest.Description}"
+                    TextWrapping="Wrap" />
                 <ListView
                     x:Name="listOfTasksInChosenTest"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Margin="0,0,5,0"
                     IsItemClickEnabled="True"
                     ItemContainerStyle="{StaticResource NoSelectionStyle}"
@@ -342,7 +345,7 @@
                     SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
                     SelectionMode="None" />
                 <StackPanel
-                    Grid.Row="2"
+                    Grid.Row="3"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <Button

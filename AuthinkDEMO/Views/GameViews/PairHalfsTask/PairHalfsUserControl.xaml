@@ -16,7 +16,8 @@
                 Width="150"
                 Height="150"
                 Padding="0"
-                PairId="{Binding UniquePairId}">
+                PairId="{Binding UniquePairId}"
+                Background="White">
                 <Button
                     Width="150"
                     Height="150"

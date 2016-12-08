@@ -2,7 +2,6 @@
     x:Class="AuthinkDEMO.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:AuthinkDEMO.Controls"
     xmlns:converters="using:AuthinkDEMO.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ignore="http://www.ignore.com"
@@ -14,8 +13,6 @@
 
     <Grid Background="{StaticResource BackgroundImage}">
         <Rectangle Fill="{StaticResource BackgroundImageOverlay}" />
-
-        <!--<controls:FullscreenTitleBar HorizontalAlignment="Stretch" VerticalAlignment="Top" />-->
 
         <Viewbox
             Margin="60,0,60,0"

@@ -94,7 +94,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Rectangle
-            x:Name="GrapPanel"
+            x:Name="GrabPanel"
             HorizontalAlignment="Stretch"
             Fill="Transparent" />
         <Button

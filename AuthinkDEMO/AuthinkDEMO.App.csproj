@@ -787,9 +787,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Skins\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AuthinkDEMO.Model\AuthinkDEMO.Model.csproj">
       <Project>{794e0132-31ef-4612-9599-af4726f63406}</Project>

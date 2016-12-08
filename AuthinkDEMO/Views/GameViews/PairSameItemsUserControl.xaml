@@ -17,6 +17,7 @@
                 Padding="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                Background="White"
                 PairId="{Binding Id}">
                 <Button
                     Width="150"
@@ -29,7 +30,10 @@
             </Controls:DraggableElement>
         </DataTemplate>
         <DataTemplate x:Key="DropPlaceholderTemplate">
-            <Controls:DropPlaceholder ExpectedPairId="{Binding Id}" OnDropSuccessful="DropSuccessful">
+            <Controls:DropPlaceholder
+                Background="White"
+                ExpectedPairId="{Binding Id}"
+                OnDropSuccessful="DropSuccessful">
                 <Button
                     Width="150"
                     Height="150"
