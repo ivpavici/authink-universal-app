@@ -67,12 +67,12 @@
     <DataTemplate x:Key="listOfTestsItemTemplate">
         <StackPanel Margin="5,5,0,5">
             <TextBlock
-                FontSize="17.333"
+                FontSize="16"
                 Foreground="White"
                 Text="{Binding Name}"
                 TextWrapping="Wrap" />
             <TextBlock
-                FontSize="13.333"
+                FontSize="12"
                 Foreground="White"
                 Opacity="0.8"
                 Text="{Binding Description}"
@@ -81,20 +81,26 @@
     </DataTemplate>
 
     <DataTemplate x:Key="listOfTasksInChosenTestTemplate">
-        <StackPanel Margin="10" Orientation="Horizontal">
+        <Grid Margin="10" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <Border
                 Width="125"
                 Height="125"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 BorderBrush="Black"
                 BorderThickness="1">
-                <Image
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Source="{Binding ThumbUrl}"
-                    Stretch="UniformToFill" />
+                <Image Source="{Binding ThumbUrl}" Stretch="UniformToFill" />
             </Border>
 
-            <StackPanel Margin="10,0,0,0" HorizontalAlignment="Center">
+            <Grid Grid.Column="1" Margin="10,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <TextBlock
                     Margin="0,0,10,10"
                     FontSize="25"
@@ -102,14 +108,14 @@
                     Text="{Binding Name}"
                     TextWrapping="Wrap" />
                 <TextBlock
-                    Width="800"
+                    Grid.Row="1"
                     Margin="0,0,10,0"
                     FontSize="20"
                     Foreground="Black"
                     Text="{Binding Description}"
                     TextWrapping="Wrap" />
-            </StackPanel>
-        </StackPanel>
+            </Grid>
+        </Grid>
     </DataTemplate>
 
     <Style x:Key="PictureListViewItemStyle" TargetType="ListViewItem">

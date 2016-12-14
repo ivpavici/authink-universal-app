@@ -576,12 +576,14 @@
     </Compile>
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Controls\ActualSizePropertyProxy.cs" />
     <Compile Include="Controls\DraggableElement.cs" />
     <Compile Include="Controls\DropPlaceholder.cs" />
     <Compile Include="Controls\FullscreenTitleBar.xaml.cs">
       <DependentUpon>FullscreenTitleBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\EnableButtonConverter.cs" />
+    <Compile Include="Converters\DoubleMultiplier.cs" />
     <Compile Include="Converters\MultiplyByScreenRatio.cs" />
     <Compile Include="Converters\VisibilityBottunConvertor.cs" />
     <Compile Include="Services\InternetConnection.cs" />

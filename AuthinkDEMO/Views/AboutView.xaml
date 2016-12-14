@@ -10,76 +10,75 @@
     d:DesignWidth="1366"
     DataContext="{Binding About, Source={StaticResource Locator}}"
     mc:Ignorable="d ignore">
-    <Page.Resources>
-        <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
-    </Page.Resources>
+
     <Grid Background="{StaticResource BackgroundImage}">
         <Rectangle Fill="{StaticResource BackgroundImageOverlay}" />
-        <Viewbox Stretch="Uniform">
-            <Grid
-                x:Name="AboutContainer"
-                Width="1366"
-                Height="{Binding ActualWidth, ElementName=AboutContainer, Converter={StaticResource MultiplyByScreenRatio}}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="0.2*" />
-                </Grid.ColumnDefinitions>
 
-                <Border
-                    Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    Background="White">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.2*" />
-                            <RowDefinition Height="0.6*" />
-                            <RowDefinition Height="0.2*" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Grid.Row="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Source="ms-appx:///Assets/Logo/lite-tile.png" />
-                        <Border
-                            Grid.Row="1"
-                            HorizontalAlignment="Center"
-                            BorderThickness="0,1"
-                            BorderBrush="#FF0C5371">
+        <Grid x:Name="AboutContainer">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.6*" MinWidth="500" />
+                <ColumnDefinition Width="0.2*" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="1"
+                Width="500"
+                HorizontalAlignment="Center"
+                Background="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*" />
+                        <RowDefinition Height="0.6*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="ms-appx:///Assets/Logo/lite-tile.png" />
+                    <Border
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        BorderBrush="#FF0C5371"
+                        BorderThickness="0,1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <TextBlock
                                 Margin="0,10"
                                 Padding="10,10,10,10"
                                 FontFamily="Segoe UI Light"
-                                FontSize="22"
+                                FontSize="16"
                                 Foreground="Black"
                                 Text="{Binding AboutTextContent}"
                                 TextWrapping="Wrap" />
-                        </Border>
-                        <Grid Grid.Row="2" HorizontalAlignment="Center">
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button
-                                    MinWidth="250"
-                                    MinHeight="41"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    Command="{Binding BackButtonCommand}"
-                                    Content="{Binding BackButtonContent}"
-                                    FontFamily="{StaticResource Obelix}"
-                                    FontSize="22"
-                                    Template="{StaticResource GlobalYellowButtonStyle}" />
+                        </ScrollViewer>
+                    </Border>
+                    <Grid Grid.Row="2" HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Button
+                            MinWidth="250"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            Command="{Binding BackButtonCommand}"
+                            Content="{Binding BackButtonContent}"
+                            FontFamily="{StaticResource Obelix}"
+                            FontSize="22"
+                            Template="{StaticResource GlobalYellowButtonStyle}" />
 
-                            </StackPanel>
-
-                            <TextBlock
-                                Margin="0,0,0,10"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom"
-                                Foreground="#3F000000"
-                                Text="Disclaimer: the background picture is property of Adventure Time, Frederator Studios, Cartoon Network Studios" />
-                        </Grid>
+                        <TextBlock
+                            Grid.Row="1"
+                            Margin="0,10,0,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            FontSize="10"
+                            Foreground="#3F000000"
+                            Text="Disclaimer: the background picture is property of Adventure Time, Frederator Studios, Cartoon Network Studios"
+                            TextWrapping="Wrap" />
                     </Grid>
-                </Border>
-            </Grid>
-        </Viewbox>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>

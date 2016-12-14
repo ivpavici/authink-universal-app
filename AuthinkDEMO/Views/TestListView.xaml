@@ -2,10 +2,12 @@
     x:Class="AuthinkDEMO.Views.TestListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AuthinkDEMO.Controls"
     xmlns:converters="using:AuthinkDEMO.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ignore="http://www.ignore.com"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="PageRoot"
     d:DesignHeight="768"
     d:DesignWidth="1366"
     DataContext="{Binding List, Source={StaticResource Locator}}"
@@ -13,6 +15,7 @@
     <Page.Resources>
         <converters:EnableButtonConverter x:Key="EnableButtonConverterKey" />
         <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
+        <converters:DoubleMultiplier x:Key="DoubleMultiplier" />
 
         <Style x:Key="NoSelectionStyle" TargetType="ListViewItem">
             <Setter Property="Template">
@@ -248,128 +251,116 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <controls:ActualSizePropertyProxy x:Name="PageSize" Element="{Binding ElementName=PageRoot}" />
     </Page.Resources>
-    <Viewbox Stretch="Uniform">
-        <Grid
-            x:Name="TestListContainer"
-            Width="1366"
-            Height="{Binding ActualWidth, ElementName=TestListContainer, Converter={StaticResource MultiplyByScreenRatio}}"
-            Background="{StaticResource BasicAppBackgroundStyle}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*" />
-                <ColumnDefinition Width="0.7*" />
-            </Grid.ColumnDefinitions>
-            <Grid Background="#FF116C98">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*" />
-                    <RowDefinition Height="0.85*" />
-                </Grid.RowDefinitions>
-                <Border
-                    Grid.RowSpan="3"
-                    Margin="5,0,0,0"
-                    BorderThickness="1,0,0,0"
-                    Visibility="Collapsed">
-                    <Border.BorderBrush>
-                        <LinearGradientBrush MappingMode="Absolute" SpreadMethod="Repeat" StartPoint="0,0" EndPoint="0,11">
-                            <GradientStop Offset="0" Color="Transparent" />
-                            <GradientStop Offset="0.499" Color="Transparent" />
-                            <GradientStop Offset="0.7" Color="White" />
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                </Border>
-                <Border BorderThickness="0,0,0,1">
-                    <Border.BorderBrush>
-                        <LinearGradientBrush MappingMode="Absolute" SpreadMethod="Repeat" StartPoint="-5.5,5.5" EndPoint="5.5,5.5">
-                            <GradientStop Offset="0" Color="Transparent" />
-                            <GradientStop Offset="0.499" Color="Transparent" />
-                            <GradientStop Offset="0.7" Color="White" />
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                    <Image
-                        Margin="80,-10,80,0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Source="ms-appx:///Assets/Logo/authink-lite-logo-white.png" />
-                </Border>
-                <ListView
-                    x:Name="listOfTests"
-                    Grid.Row="1"
-                    Margin="0,5,0,0"
-                    VerticalAlignment="Stretch"
-                    ItemContainerStyle="{StaticResource TestListItemStyle}"
-                    ItemTemplate="{StaticResource listOfTestsItemTemplate}"
-                    ItemsSource="{Binding Tests}"
-                    ScrollViewer.HorizontalScrollMode="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollMode="Auto"
-                    SelectedItem="{Binding SelectedTest, Mode=TwoWay}"
-                    SelectionMode="Single"
-                    Style="{StaticResource ListViewStyle1}" />
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="0.7*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock
-                    x:Name="testTitle"
-                    Margin="20,30,20,20"
-                    HorizontalAlignment="Left"
-                    FontSize="45"
-                    Foreground="Black"
-                    Text="{Binding SelectedTest.Name}"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    x:Name="testDescription"
-                    Grid.Row="1"
-                    Margin="20,0,20,20"
-                    HorizontalAlignment="Left"
-                    FontSize="30"
-                    Foreground="Black"
-                    Text="{Binding SelectedTest.Description}"
-                    TextWrapping="Wrap" />
-                <ListView
-                    x:Name="listOfTasksInChosenTest"
-                    Grid.Row="2"
-                    Margin="0,0,5,0"
-                    IsItemClickEnabled="True"
-                    ItemContainerStyle="{StaticResource NoSelectionStyle}"
-                    ItemTemplate="{StaticResource listOfTasksInChosenTestTemplate}"
-                    ItemsSource="{Binding SelectedTest.Tasks}"
-                    ScrollViewer.HorizontalScrollMode="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollMode="Enabled"
-                    ScrollViewer.ZoomMode="Disabled"
-                    SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
-                    SelectionMode="None" />
-                <StackPanel
-                    Grid.Row="3"
+
+    <Grid Background="{StaticResource BasicAppBackgroundStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#FF116C98">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border BorderBrush="White" BorderThickness="0,0,0,1">
+                <Image
+                    Width="200"
+                    Margin="0,20,0,20"
                     HorizontalAlignment="Center"
-                    Orientation="Horizontal">
+                    VerticalAlignment="Center"
+                    Source="ms-appx:///Assets/Logo/authink-lite-logo-white.png" />
+            </Border>
+            <ListView
+                x:Name="listOfTests"
+                Grid.Row="1"
+                Width="{Binding ActualWidthValue, ElementName=PageSize, Converter={StaticResource DoubleMultiplier}, ConverterParameter=0.3}"
+                MinWidth="225"
+                Margin="0,5,0,0"
+                VerticalAlignment="Stretch"
+                ItemContainerStyle="{StaticResource TestListItemStyle}"
+                ItemTemplate="{StaticResource listOfTestsItemTemplate}"
+                ItemsSource="{Binding Tests}"
+                ScrollViewer.HorizontalScrollMode="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollMode="Auto"
+                SelectedItem="{Binding SelectedTest, Mode=TwoWay}"
+                SelectionMode="Single"
+                Style="{StaticResource ListViewStyle1}" />
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="testTitle"
+                Margin="20,30,20,20"
+                HorizontalAlignment="Left"
+                FontSize="36"
+                Foreground="Black"
+                Text="{Binding SelectedTest.Name}"
+                TextWrapping="Wrap" />
+            <TextBlock
+                x:Name="testDescription"
+                Grid.Row="1"
+                Margin="20,0,20,20"
+                HorizontalAlignment="Left"
+                FontSize="20"
+                Foreground="Black"
+                Text="{Binding SelectedTest.Description}"
+                TextWrapping="Wrap" />
+            <ListView
+                x:Name="listOfTasksInChosenTest"
+                Grid.Row="2"
+                IsItemClickEnabled="True"
+                ItemContainerStyle="{StaticResource NoSelectionStyle}"
+                ItemTemplate="{StaticResource listOfTasksInChosenTestTemplate}"
+                ItemsSource="{Binding SelectedTest.Tasks}"
+                ScrollViewer.HorizontalScrollMode="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollMode="Enabled"
+                ScrollViewer.ZoomMode="Disabled"
+                SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
+                SelectionMode="None" />
+            <Viewbox
+                Grid.Row="3"
+                Margin="20,0,20,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                StretchDirection="DownOnly">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <Button
                         x:Name="GoBackButton"
                         Margin="0,10,20,20"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        HorizontalContentAlignment="Stretch"
                         Command="{Binding GoBackCommand}"
                         Content="{Binding GoBackButtonContent}"
-                        Style="{StaticResource TestListViewButtonStyle}"
+                        FontSize="22"
+                        Style="{StaticResource BasicTaskViewButtonStyle}"
                         Template="{StaticResource GlobalYellowButtonStyle}" />
                     <Button
                         x:Name="selectTestButton"
-                        Margin="1,10,0,20"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Margin="0,10,0,20"
                         Command="{Binding RunTestCommand}"
                         Content="{Binding SelectTestButtonContent}"
+                        FontSize="22"
                         IsEnabled="{Binding SelectedItem, Converter={StaticResource EnableButtonConverterKey}, ElementName=listOfTests}"
-                        Style="{StaticResource TestListViewButtonStyle}"
+                        Style="{StaticResource BasicTaskViewButtonStyle}"
                         Template="{StaticResource GlobalYellowButtonStyle}" />
-                </StackPanel>
-            </Grid>
+                </Grid>
+            </Viewbox>
         </Grid>
-    </Viewbox>
+    </Grid>
 </Page>

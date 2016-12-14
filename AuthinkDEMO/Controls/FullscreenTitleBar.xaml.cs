@@ -1,8 +1,10 @@
 ﻿using Windows.ApplicationModel.Core;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace AuthinkDEMO.Controls
 {
@@ -14,6 +16,15 @@ namespace AuthinkDEMO.Controls
         {
             this.InitializeComponent();
             Window.Current.SizeChanged += Window_SizeChanged;
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        }
+
+        private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
+        {
+            if (args.VirtualKey == VirtualKey.Escape && ApplicationView.GetForCurrentView().IsFullScreenMode)
+            {
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();
+            }
         }
 
         private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)

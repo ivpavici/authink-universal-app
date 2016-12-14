@@ -10,7 +10,6 @@
     DataContext="{Binding DetectColors, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:MultiplyByScreenRatio x:Key="MultiplyByScreenRatio" />
         <Style x:Key="EllipseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}" />
             <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}" />
@@ -196,10 +195,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
-        <Grid
-            x:Name="DetectColorsContainer"
-            Width="1366"
-            Height="{Binding ActualWidth, ElementName=DetectColorsContainer, Converter={StaticResource MultiplyByScreenRatio}}">
+        <Grid x:Name="DetectColorsContainer">
             <MediaElement
                 AudioCategory="BackgroundCapableMedia"
                 AutoPlay="True"
