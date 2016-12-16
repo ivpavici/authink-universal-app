@@ -82,8 +82,18 @@ namespace AuthinkDEMO
                     ApplicationData.Current.LocalSettings.Values["IsInstructionSoundEnabled"] = true;
                 }
 
-#if (RELEASE || DEBUG)
+#if (LITE)
+                if (SimpleIoc.Default.GetInstance<IDataProvider>() != null)
+                {
+                    SimpleIoc.Default.Unregister<IDataProvider>();
+                    SimpleIoc.Default.Unregister<ILoginService>();
+                }
 
+                SimpleIoc.Default.Register<IDataProvider, DefaultDataFactory>();
+
+                ApplicationData.Current.LocalSettings.Values["ActiveVersion"] = "Lite";
+                var startViewType = typeof(MainPage);
+#else
                 if (SimpleIoc.Default.GetInstance<IDataProvider>() != null)
                 {
                     SimpleIoc.Default.Unregister<IDataProvider>();
@@ -94,18 +104,6 @@ namespace AuthinkDEMO
                 //SimpleIoc.Default.Register<ILoginService>(() => new ApiAdapter());
 
                 ApplicationData.Current.LocalSettings.Values["ActiveVersion"] = "Online";
-                var startViewType = typeof(MainPage);
-#elif LITE
-
-                if (SimpleIoc.Default.GetInstance<IDataProvider>() != null)
-                {
-                    SimpleIoc.Default.Unregister<IDataProvider>();
-                    SimpleIoc.Default.Unregister<ILoginService>();
-                }
-
-                SimpleIoc.Default.Register<IDataProvider, DefaultDataFactory>();
-
-                ApplicationData.Current.LocalSettings.Values["ActiveVersion"] = "Lite";
                 var startViewType = typeof(MainPage);
 #endif
                 if (!rootFrame.Navigate(startViewType, args.Arguments))

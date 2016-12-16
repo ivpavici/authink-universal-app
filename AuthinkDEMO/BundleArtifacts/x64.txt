@@ -1,2 +1,2 @@
-MainPackage=C:\Users\David\Documents\authink-universal\AuthinkDEMO\bin\x64\Debug\AuthinkDEMO.App_1.0.6.0_x64_Debug.appx
-SymbolPackage=C:\Users\David\Desktop\Aukey\UWP Repo\AuthinkDEMO.App_1.0.6.0_Debug_Test\AuthinkDEMO.App_1.0.6.0_x64_Debug.appxsym
+MainPackage=C:\Users\David\Documents\authink-universal\AuthinkDEMO\bin\x64\Release\AuthinkDEMO.App_1.2.4.0_x64.appx
+SymbolPackage=C:\Users\David\Desktop\Aukey\UWP Repo\AuthinkDEMO.App_1.2.4.0_Test\AuthinkDEMO.App_1.2.4.0_x64.appxsym

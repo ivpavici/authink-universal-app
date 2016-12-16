@@ -2,11 +2,8 @@
 {
     public static class ApiDataSource
     {   
-#if (DEBUG || LITE)
         public static string BaseUrl = "http://authink.dump.hr/";
-#elif RELEASE
-        public static string BaseUrl = "http://authink.dump.hr/";
-#endif
+
         public static string UserLogin      = "api/login/user";
         public static string UsersChildren  = "api/users/children/";
         public static string TaskStatistics = "api/statistics/task";
