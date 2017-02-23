@@ -46,10 +46,20 @@
                         Template="{StaticResource GlobalYellowButtonStyle}" />
                     <Button
                         x:Name="aboutButton"
+                        Margin="0,0,0,20"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Command="{Binding AboutCommand}"
                         Content="{Binding AboutButtonContent}"
+                        FontFamily="{StaticResource Obelix}"
+                        Style="{StaticResource BasicTaskViewButtonStyle}"
+                        Template="{StaticResource GlobalYellowButtonStyle}" />
+                    <Button
+                        x:Name="backButton"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Command="{Binding BackCommand}"
+                        Content="{Binding BackButtonContent}"
                         FontFamily="{StaticResource Obelix}"
                         Style="{StaticResource BasicTaskViewButtonStyle}"
                         Template="{StaticResource GlobalYellowButtonStyle}" />

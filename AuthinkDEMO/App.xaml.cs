@@ -100,11 +100,11 @@ namespace AuthinkDEMO
                     SimpleIoc.Default.Unregister<ILoginService>();
                 }
 
-                SimpleIoc.Default.Register<IDataProvider, DefaultDataFactory>();
-                //SimpleIoc.Default.Register<ILoginService>(() => new ApiAdapter());
+                SimpleIoc.Default.Register<IDataProvider, ApiAdapter>();
+                SimpleIoc.Default.Register<ILoginService>(() => new ApiAdapter());
 
                 ApplicationData.Current.LocalSettings.Values["ActiveVersion"] = "Online";
-                var startViewType = typeof(MainPage);
+                var startViewType = typeof(LoginView);
 #endif
                 if (!rootFrame.Navigate(startViewType, args.Arguments))
                 {
