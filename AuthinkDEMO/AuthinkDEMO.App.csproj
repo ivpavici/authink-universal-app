@@ -19,7 +19,7 @@
     <AppxPackageDir>C:\Users\David\Desktop\Aukey\UWP Repo\</AppxPackageDir>
     <PackageCertificateThumbprint>B578AF4EAF8B53382FA8F5699C15B1262462ECD0</PackageCertificateThumbprint>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
